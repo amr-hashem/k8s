@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: theCollective
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sana
+    password: sana
+  h2:
+    console:
+      enabled: true
+      settings.web-allow-others: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+#    show-sql: true
+  cache.type: redis
+  redis:
+    host: localhost
+    port: 6379
+server:
+  port: 8080
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true
