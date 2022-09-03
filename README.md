@@ -6,3 +6,5 @@
 `curl http://localhost:8080/api/v1/plants/1`
 #### second service
 `curl http://localhost:9595/api/v2/integrationService/getPlantDetails/1`
+#### run redis
+`docker-compose -f docker-compose.yml up`
