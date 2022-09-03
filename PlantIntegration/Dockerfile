@@ -1,5 +1,9 @@
-FROM openjdk:11
+FROM openjdk:11 as builder
+RUN mkdir -p /app/src
+COPY . /app/src
+WORKDIR /app/src
+RUN ./mvnw clean package
 
-ADD target/PlantIntegration-1.0.jar plantIntegration-1.0.jar
-
-ENTRYPOINT ["java", "-jar", "plantIntegration-1.0.jar"]
+FROM builder
+COPY --from=builder /app/src/target/*.jar /app/app.jar
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
